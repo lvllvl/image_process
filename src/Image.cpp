@@ -13,7 +13,7 @@ Image::~Image(){
 }
 
 bool Image::loadFrameFile( const std::string filename ) {
-   std::ifstream inputFile( "filename" ); // Create file object
+   std::ifstream inputFile( filename ); // Create file object
    if (inputFile.is_open()) { 
       // Check if file is open
       std::cout << "File is open" << std::endl;

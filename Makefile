@@ -3,16 +3,16 @@ CFLAGS = -std=c++11 -Wall
 INCLUDE_DIR = include
 SRC_DIR = src
 
+SRCS := $(wildcard $(SRC_DIR)/*.cpp)
+OBJS := $(SRCS:$(SRC_DIR)/%.cpp=$(SRC_DIR)/%.o)
+
 all: program
 
-program: $(SRC_DIR)/main.o $(SRC_DIR)/Image.o
-	$(CC) $(CFLAGS) $(SRC_DIR)/main.o $(SRC_DIR)/Image.o -o program
+program: $(OBJS)
+	$(CC) $(CFLAGS) $^ -o program
 
-$(SRC_DIR)/main.o: $(SRC_DIR)/main.cpp $(INCLUDE_DIR)/Image.h
-	$(CC) $(CFLAGS) -c $(SRC_DIR)/main.cpp -I$(INCLUDE_DIR) -o $(SRC_DIR)/main.o
+$(SRC_DIR)/%.o: $(SRC_DIR)/%.cpp $(INCLUDE_DIR)/%.h
+	$(CC) $(CFLAGS) -c $< -I$(INCLUDE_DIR) -o $@
 
-$(SRC_DIR)/Image.o: $(SRC_DIR)/Image.cpp $(INCLUDE_DIR)/Image.h
-	$(CC) $(CFLAGS) -c $(SRC_DIR)/Image.cpp -I$(INCLUDE_DIR) -o $(SRC_DIR)/Image.o
-	
 clean:
 	rm -rf $(SRC_DIR)/*.o program
