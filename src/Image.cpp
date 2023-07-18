@@ -1,24 +1,26 @@
 #include "Image.h"
-class Image {
-    // Member variables
+#include <iostream>
+#include <fstream>
+#include <string>
 
-    // // Member function prototypes
-    // int getWidth();
-    // int getHeight();
-    // bool loadFrameFile( std::string filename );
-    // bool saveToFile( std::string filename );
-    // void resize( int newWidth, int newHeight);
-    // Image crop( int x, int y, int width, int height ); 
-    // Image rotate( float angle );
-    // Image applyFilter( Filter filer ); // TODO: Implement Filter class
-    // Image convertToGrayscale(); 
 
-     bool Image::loadFrameFile( std::string filename ) {
-        ofstream file; // Create file object
-        file.open(filename); // Open file
-        file << "Writing this to a file.\n";
-        file.close(); // Close file
+Image::Image(){
+   std::cout << "Image constructor called" << std::endl;
+}
 
-        return true;
-     }
-};
+Image::~Image(){
+   std::cout << "Image destructor called" << std::endl;
+}
+
+bool Image::loadFrameFile( const std::string filename ) {
+   std::ifstream inputFile( "filename" ); // Create file object
+   if (inputFile.is_open()) { 
+      // Check if file is open
+      std::cout << "File is open" << std::endl;
+      inputFile.close(); // Close file
+      } else {
+         std::cout << "Unable to open file" << std::endl;
+         return false;
+         }
+   return true;
+   }
