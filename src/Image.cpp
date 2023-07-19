@@ -15,9 +15,9 @@ Image::Image(const std::string &filename)
    // imageData.width = loadImageWidthFromFile(filename);
    // imageData.height = loadImageHeightFromFile(filename);
 
-   // TODO: make sure you're only opening the file ONE TIME, then gather data, be efficient!
-   // TODO: store the file name 
-   // TODO: store the number of channels in the image
+   // TODO: #1 make sure you're only opening the file ONE TIME, then gather data, be efficient!
+   // TODO: #2 store the file name 
+   // TODO: #3 store the number of channels in the image
 }
 
 Image::~Image()
@@ -43,7 +43,7 @@ bool Image::loadFrameFile(const std::string filename)
 }
 
 std::vector<cv::Vec3b> Image::openImage( const std::string& filename ){
-   cv::Mat image = cv.imread( filename ); // Read the file
+   cv::Mat image = cv::imread( filename ); // Read the file
 
    std::vector<cv::Vec3b> pixels;
    if ( image.empty() ) {
