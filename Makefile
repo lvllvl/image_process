@@ -12,7 +12,7 @@ program: $(OBJS)
 	$(CC) $(CFLAGS) $^ -o program
 
 $(SRC_DIR)/%.o: $(SRC_DIR)/%.cpp $(INCLUDE_DIR)/%.h
-	$(CC) $(CFLAGS) -c $< -I$(INCLUDE_DIR) -o $@
+	$(CC) $(CFLAGS) `pkg-config --cflags opencv4` -c $< -I$(INCLUDE_DIR) -o $@
 
 clean:
 	rm -rf $(SRC_DIR)/*.o program

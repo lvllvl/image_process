@@ -2,11 +2,15 @@
 #define IMAGE_H
 
 #include <string>
+#include <vector>
+#include <opencv2/opencv.hpp>
+
 
 struct ImageData {
+    std::vector<int> pixels; 
     int width;
     int height;
-    int* pixels;
+    // int* pixels;
 };
 
 class Image {
@@ -18,8 +22,9 @@ public:
 
     // Member functions
     bool loadFrameFile( const std::string filename );
-    int loadImageWidthFromFile( const std::string filename );
-    int loadImageHeightFromFile( const std::string filename );
+    // int loadImageWidthFromFile( const std::string filename );
+    // int loadImageHeightFromFile( const std::string filename );
+    std::vector<cv::Vec3b> openImage( const std::string& filename );
     // int getWidth();
     // int getHeight();
     // bool saveToFile( std::string filename );
