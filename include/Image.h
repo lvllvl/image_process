@@ -15,6 +15,7 @@ struct ImageData {
 
 class Image {
 public:
+    
     // Constructors
     Image(); // Image(const std::string& filename);
     Image( const std::string& filename ); // Image(const std::string& filename);
@@ -22,13 +23,9 @@ public:
 
     // Member functions
     bool loadFrameFile( const std::string filename );
-    // int loadImageWidthFromFile( const std::string filename );
-    // int loadImageHeightFromFile( const std::string filename );
     std::vector<cv::Vec3b> openImage( const std::string& filename );
-    // int getWidth();
-    // int getHeight();
-    // bool saveToFile( std::string filename );
     void resize( int newWidth, int newHeight);
+    // bool saveToFile( std::string filename );
    //  Image crop( int x, int y, int width, int height ); 
    //  Image rotate( float angle );
    //  Image applyFilter( Filter filer ); // TODO: Implement Filter class
