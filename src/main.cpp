@@ -4,8 +4,9 @@
 int main() {
 
     Image image;
-    image.loadFrameFile("test_images/test.txt");
-    std::cout << "Hello, World!" << std::endl;
+    // image.loadFrameFile("test_images/testImage_01.png");
+    image.openImage("test_images/testImage_01.png");
+    image.displayImage("test_images/testImage_01.png");
 
     return 0;
 }

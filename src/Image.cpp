@@ -113,3 +113,38 @@ void Image::resize(int newWidth, int newHeight)
    imageData.width = newWidth;
    imageData.height = newHeight;
 }
+
+void Image::convertToGrayscale()
+{
+   std::cout << "Convert to grayscale called" << std::endl;
+
+   for (int i = 0; i < imageData.pixels.size(); i += 3)
+   {
+
+      int red = imageData.pixels[i];
+      int green = imageData.pixels[i + 1];
+      int blue = imageData.pixels[i + 2];
+
+      // Calculate grayscale value by taking the average
+      int grayscale = (red + green + blue) / 3;
+
+      // Assign the grayscale value to all three channels ( R, G, B )
+      imageData.pixels[i] = grayscale;
+      imageData.pixels[i + 1] = grayscale;
+      imageData.pixels[i + 2] = grayscale;
+   }
+}
+
+void Image::displayImage(const std::string &filename)
+{
+   std::cout << "displayImage function called" << std::endl;
+   cv::Mat image = cv::imread(filename);
+
+   if (image.empty())
+   {
+      std::cout << "Could not open or find the image" << std::endl;
+      return;
+   }
+   cv::imshow("Display window", image);
+   cv::waitKey(10000);
+}
