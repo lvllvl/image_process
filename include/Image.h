@@ -9,6 +9,7 @@ struct ImageData {
     std::vector<int> pixels; 
     int width;
     int height;
+    int channels;
     // int* pixels;
 };
 
@@ -27,7 +28,7 @@ public:
     // int getWidth();
     // int getHeight();
     // bool saveToFile( std::string filename );
-    // void resize( int newWidth, int newHeight);
+    void resize( int newWidth, int newHeight);
    //  Image crop( int x, int y, int width, int height ); 
    //  Image rotate( float angle );
    //  Image applyFilter( Filter filer ); // TODO: Implement Filter class

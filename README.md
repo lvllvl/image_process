@@ -25,3 +25,11 @@ This is a C++ library that provides functionality for image and video processing
    ```shell
    git clone https://github.com/lvllvl/image_process.git 
    ```
+2. Use make 
+
+   ```shell
+   make program
+
+   ./program
+   ```
+
