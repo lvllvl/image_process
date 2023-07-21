@@ -148,3 +148,41 @@ void Image::displayImage(const std::string &filename)
    cv::imshow("Display window", image);
    cv::waitKey(10000);
 }
+
+cv::VideoCapture Image::initCamera()
+{
+   std::cout << "initCamera function called" << std::endl;
+
+   cv::VideoCapture camera(0); // open the default camera
+
+   camera.set(cv::CAP_PROP_FRAME_WIDTH, 640);
+   camera.set(cv::CAP_PROP_FRAME_HEIGHT, 480);
+
+   if (!camera.isOpened())     // check if we succeeded
+   {
+      std::cout << "Unable to open camera" << std::endl;
+      throw std::runtime_error( "Failed to access the camera." );
+   }
+   return camera;
+}
+
+cv::Mat Image::captureImage( cv::VideoCapture& camera ){
+
+   cv::Mat frame; 
+   if ( !camera.read( frame ) ){
+      // Handle the iamge capture failure 
+      throw std::runtime_error( "Failed to capture an image." );
+   }
+   return frame;
+}
+
+void Image::displayCapturedImage( const std::string& windowName, cv::Mat& image ){
+
+   if (! image.empty()) {
+      cv::imshow( windowName, image );
+      cv::waitKey(0);
+
+   } else{
+      std::cout << "Image is empty" << std::endl;
+   }
+}

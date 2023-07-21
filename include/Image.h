@@ -27,6 +27,9 @@ public:
     void resize( int newWidth, int newHeight);
     void convertToGrayscale();
     void displayImage( const std::string& filename );
+    cv::VideoCapture initCamera(); 
+    cv::Mat captureImage( cv::VideoCapture& camera );
+    void displayCapturedImage( const std::string& windowName, cv::Mat& image );
 
     // bool saveToFile( std::string filename );
    //  Image crop( int x, int y, int width, int height ); 
