@@ -3,60 +3,50 @@
 
 int main() {
     
-    Image image;
-
+    Image image; // Create an Image object
     try {
-        // Init the camera
-        cv::VideoCapture camera = image.initCamera();
-        bool convertToGrayscale = false;
+        cv::VideoCapture camera = image.initCamera();// Init the camera
+        bool convertToGrayscale = false; // Flag to convert to grayscale
 
         while (true) {
-            // Capture an image
-            cv::Mat frame; 
+            cv::Mat frame; // Capture an image
             camera.read( frame );
 
-            // Display the captured frame 
-            cv::imshow( "Captured Frame", frame );
+            cv::imshow( "Captured Frame", frame );// Display the captured frame 
 
             // Wait for a short duration ( e.g., 30 ms ) to control framerate
             int key = cv::waitKey( 30 );
-            if (key == 'g' ){
+
+            if (key == 'g' ){ // If 'g' is pressed, toggle the grayscale flag
                 convertToGrayscale = !convertToGrayscale;
             }
 
-            cv::Mat displayFrame = frame.clone(); 
-            if ( convertToGrayscale ){
-                cv::cvtColor( frame, displayFrame, cv::COLOR_BGR2GRAY );
+            cv::Mat displayFrame = frame.clone();  // Create a copy of the frame to display
+            if ( convertToGrayscale ){// Convert the frame to grayscale if needed
+                cv::cvtColor( frame, displayFrame, cv::COLOR_BGR2GRAY ); 
             }
 
-            // Display the frame ( color or grayscale )
-            cv::imshow( "Display Frame", displayFrame );
+            cv::imshow( "Display Frame", displayFrame ); // Display the captured frame ( color or grayscale )
 
-            // check if the user pressed a key ( key != -1 ) or if 'q' was pressed ( ASCII value of 'q' is 113 )
+            // check if the user pressed a key ( key != -1 ) or 
+            // if 'q' was pressed ( ASCII value of 'q' is 113 )
             if ( key != -1 ||   key == 113 ) {
                 break; // exit the loop if a key is pressed or 'q' is detected 
             }
         }
-        // After exiting loop, capture the image 
-        cv::Mat captureImage = image.captureImage( camera );
+        cv::Mat captureImage = image.captureImage( camera );// After exiting loop, capture the image
 
         // convert the captured image to grayscale if needed
         if ( convertToGrayscale ){
             cv::cvtColor( captureImage, captureImage, cv::COLOR_BGR2GRAY );
         }
 
-        // Display the captured image
-        image.displayCapturedImage( "Captured Image", captureImage );
+        image.displayCapturedImage( "Captured Image", captureImage );// Display the captured image
 
     } catch ( const std::exception& ex ){
         std::cerr << "Error: " << ex.what() << std::endl;
         return 1;
     }
     
-    // image.openImage("test_images/testImage_01.png");
-    // image.displayImage("test_images/testImage_01.png");
-
-    // image.initCamera();
-
     return 0;
 }
