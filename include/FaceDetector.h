@@ -6,7 +6,7 @@
 
 class FaceDetector {
 public:
-    // FaceDetector();
+    FaceDetector();
 
     FaceDetector(std::string faceCascadeFilePath, std::string mouthCascadeFilePath); 
     //std::vector<cv::Rect> detectFaces(const cv::Mat& image);
