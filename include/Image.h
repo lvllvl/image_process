@@ -33,6 +33,9 @@ public:
 
     // bool saveToFile( std::string filename );
    //  Image crop( int x, int y, int width, int height ); 
+
+   // TODO: rotate, but provide the ability to reverse roation. 
+   // TODO: #4 add feature that lets you reverse any filter or changes to the image. 
    //  Image rotate( float angle );
    //  Image applyFilter( Filter filer ); // TODO: Implement Filter class
 
