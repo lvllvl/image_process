@@ -14,7 +14,7 @@ int main()
         bool convertToGrayscale = false;              // Flag to convert to grayscale
 
         while (true)
-        {   
+        {
             cv::CascadeClassifier faceCascade;
 
             cv::Mat frame; // Capture an image
@@ -28,6 +28,19 @@ int main()
             cv::imshow("Captured Frame", frame); // Display the captured frame
 
             std::vector<cv::Rect> faces = faceDetector.detectFaces(frame); // Detect faces in the captured frame
+            if (faces.empty())
+            {
+                std::cout << "No faces detected." << std::endl;
+
+                // print faces
+                for (const cv::Rect &faceRect : faces){
+                    std::cout << faceRect << std::endl;
+                }
+            }
+            else
+            {
+                std::cout << faces.size() << " faces detected." << std::endl;
+            }
 
             // Wait for a short duration ( e.g., 30 ms ) to control framerate
             int key = cv::waitKey(30);
