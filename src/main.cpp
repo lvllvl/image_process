@@ -6,7 +6,7 @@ int main()
 {
 
     Image image;               // Create an Image object
-    FaceDetector faceDetector; // Create a FaceDetector object
+    FaceDetector faceDetector("/opt/homebrew/opt/opencv/share/opencv4/haarcascades/haarcascade_frontalface_default.xml"); // Load the face cascade classifier XML file
 
     try
     {
@@ -25,23 +25,10 @@ int main()
                 std::cerr << "Error: Failed to capture frame from the camera." << std::endl;
                 break; // Exit the loop if frame is empty
             }
+
             cv::imshow("Captured Frame", frame); // Display the captured frame
-
             std::vector<cv::Rect> faces = faceDetector.detectFaces(frame); // Detect faces in the captured frame
-            if (faces.empty())
-            {
-                std::cout << "No faces detected." << std::endl;
-
-                // print faces
-                for (const cv::Rect &faceRect : faces){
-                    std::cout << faceRect << std::endl;
-                }
-            }
-            else
-            {
-                std::cout << faces.size() << " faces detected." << std::endl;
-            }
-
+            
             // Wait for a short duration ( e.g., 30 ms ) to control framerate
             int key = cv::waitKey(30);
 
